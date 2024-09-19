@@ -1,7 +1,7 @@
 # Simple Conan usage example
 
 This CMake project uses Conan to manage dependencies. The example dependency is `spdlog`.
-Works both for conan 1 and conan 2, but for conan 2 you need to create a profile. Just follow the instructions from conan.
+Works both for conan 1 and conan 2, but for conan 2 you need to create a profile - follow the instructions from conan if you do not have a profile already.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ NOTE: Only tested on OSX so far!
 ```bash
 mkdir oos
 cd oos
-conan install .. --build=missing
+conan install .. --build=missing --output-folder .
 cmake .. -DCMAKE_BUILD_TYPE=Release
 ninja
 ./MyExecutable
