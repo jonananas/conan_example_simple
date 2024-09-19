@@ -1,18 +1,25 @@
-# Specify the minimum required version of CMake
 cmake_minimum_required(VERSION 3.10)
 
-# Set the project name and version
 project(MyProject VERSION 1.0)
 
-# Specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# Add the executable target
 add_executable(MyExecutable main.cpp)
 
-# Include directories if necessary
-# include_directories(${PROJECT_SOURCE_DIR}/include)
+include(${CMAKE_BINARY_DIR}/conan_toolchain.cmake)
+if(APPLE)
+    execute_process(
+        COMMAND xcrun --sdk macosx --show-sdk-path
+        OUTPUT_VARIABLE CMAKE_OSX_SYSROOT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    set(CMAKE_OSX_SYSROOT ${CMAKE_OSX_SYSROOT} CACHE STRING "" FORCE)
+endif()
 
-# Link libraries if necessary
-# target_link_libraries(MyExecutable PRIVATE my_library)
+find_package(spdlog REQUIRED)
+
+target_link_directories(MyExecutable PRIVATE ${CMAKE_LIBRARY_PATH})
+target_include_directories(MyExecutable PRIVATE ${CMAKE_INCLUDE_PATH})
+
+target_link_libraries(MyExecutable PRIVATE spdlog::spdlog)
