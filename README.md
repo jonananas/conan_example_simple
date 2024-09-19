@@ -22,3 +22,8 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 ninja
 ./MyExecutable
 ```
+
+## Poetry
+
+Poetry configuration for isolating conan2 in a virtual environment is provided.
+Run `poetry shell` before build commands.

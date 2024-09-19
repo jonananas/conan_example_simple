@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "conan_example_simple"
+version = "0.0.1"
+description = "A simple conan example"
+authors = ["Jonas Andersson <jonananas@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+conan = "^2.7.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
